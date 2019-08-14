@@ -1,6 +1,8 @@
 # Hyperlink-Induced Topic Search (HITS) and Page Rank Algorithm: Java Implementation
 For any search engine to display properly the returned web pages, a proper ranking algorithm must be used to sort such pages based on their relevancy.
 These algorithms are used for link analysis in order to rate web pages. In this project, we show a working Java implementation of Kleinberg’s HITS Algorithm, and Google’s PageRank algorithm.
+
+This is a learning project; it can be used to reach a better understanding of how Hits and Page Rank algorithms work and it is not suitable to be used for any other reason.
 # Hyperlink-Induced Topic Search (HITS)
 HITS algorithm is introduced by Jon Kleinberg in 1998 with the aim of assigning and authoritative rank (Auth) and a hub rank (Hub) for each web page resulting from a search query.
 ## Auth
@@ -62,3 +64,25 @@ And run the algorithm with the specified arguments:
   <pre>
 java hits “iterations” “initial value” “file name (graph)”
 </pre>
+# Page Rank Algorithm
+Page rank is similar to the previously introduced Hits algorithm, however, the main difference is that it focuses on the authoritative value of page only, disregarding its Hub value.
+
+The Algorithm structure is similar to the Hits in term of Root Set, Base Set, Convergence, Iterations and updating the auth values. The Auth value of page Pi, denoted as PR(Pi)_t (page rank of Pi at a time t), is updated based on the following equation:
+<pre>
+PR(Pi_t) = (1-d)/n  + d * ∑▒〖(PR(Pj_(t-1))/CT(Pj)))〗
+</pre>
+Where Pj is a page pointing to Pi  and PR(Pj_(t-1)) is the page rank value of this page at the previous iteration. CT(Pj) is the number of pages pointed to by Pj. ‘n’ is the total number of pages in the base set. ‘d’ is a number between 0 and 1. In our implementation, ‘d’ is chosen to be 0.85
+## Input
+The inputs are the same of those described in the Hits algorithm section.
+ ### Running the program
+In order run pgrk.java, compile the file:
+  <pre>
+javac pgrk.java
+</pre>
+And run the algorithm with the specified arguments:
+  <pre>
+java pgrk “iterations” “initial value” “file name (graph)”
+</pre>
+# Side Note
+As mentioned in the beginning of the project, this implementation is used only for understanding the two ranking algorithms. I will post another project, in python,  implementing Hits Algorithm with the complete process of web mining the initial root set, building the corresponding base set, and showing the resulted web pages of a certain query sorted based on the Hits ranking.
+
